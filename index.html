@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Payne Auto Group — HR Text Line</title>
+<link rel="canonical" href="https://artasat.github.io/payne-hr/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -392,19 +393,19 @@ body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--
     <div class="phone-card">
       <div class="phone-label-sm" data-lang-i="en" style="display:inline">HR Text Line</div>
       <div class="phone-label-sm" data-lang-i="es">Línea de Texto RR.HH.</div>
-      <div class="phone-num">(866) 371-5557</div>
+      <div class="phone-num">+1 (866) 371-5557</div>
       <div class="phone-note" data-lang-i="en" style="display:inline">SMS only &nbsp;·&nbsp; Mon – Fri</div>
       <div class="phone-note" data-lang-i="es">Solo SMS &nbsp;·&nbsp; Lun – Vie</div>
     </div>
 
     <br>
-    <a class="cta-btn" href="sms:+18663715557" data-lang-ib="en" style="display:inline-block">Text Us Now</a>
-    <a class="cta-btn" href="sms:+18663715557" data-lang-ib="es">Escríbanos Ahora</a>
+    <a class="cta-btn" href="sms:+18663715557?body=Hello, I have an HR question." data-lang-ib="en" style="display:inline-block">Text Us Now</a>
+    <a class="cta-btn" href="sms:+18663715557?body=Hello, I have an HR question." data-lang-ib="es">Escríbanos Ahora</a>
 
     <div class="qr-wrap">
       <div id="qrcode"></div>
-      <div class="qr-note" data-lang-i="en" style="display:inline">Scan to open this page</div>
-      <div class="qr-note" data-lang-i="es">Escanear para abrir</div>
+      <div class="qr-note" data-lang-i="en" style="display:inline">Scan to text HR directly</div>
+      <div class="qr-note" data-lang-i="es">Escanear para escribir a RR.HH.</div>
     </div>
 
   </div>
@@ -427,7 +428,7 @@ body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--
 
     <div class="section-hd"><div class="section-pill">How it works</div><div class="section-line"></div></div>
     <div class="steps">
-      <div class="step"><div class="step-num">01</div><div class="step-text">Text your question to (866) 371-5557</div></div>
+      <div class="step"><div class="step-num">01</div><div class="step-text">Text your question to +1 (866) 371-5557</div></div>
       <div class="step"><div class="step-num">02</div><div class="step-text">HR team receives your message</div></div>
       <div class="step"><div class="step-num">03</div><div class="step-text">We reply directly to your phone</div></div>
     </div>
@@ -436,7 +437,7 @@ body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--
       <div class="consent-tag">Required disclosure</div>
       <div class="consent-title">Consent &amp; Opt-Out</div>
       <div class="consent-body">
-        By texting <strong>(866) 371-5557</strong> you consent to receive SMS replies from the Payne Group HR team. This is an <strong>employee-initiated support line only</strong>. No marketing or promotional messages are ever sent.<br><br>
+        By texting <strong>+1 (866) 371-5557</strong> you consent to receive SMS replies from the Payne Group HR team. This is an <strong>employee-initiated support line only</strong>. No marketing or promotional messages are ever sent.<br><br>
         Message frequency varies based on your inquiries. <strong>Message and data rates may apply.</strong>
       </div>
       <div class="kws">
@@ -461,7 +462,7 @@ body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--
 
     <div class="section-hd"><div class="section-pill">Cómo funciona</div><div class="section-line"></div></div>
     <div class="steps">
-      <div class="step"><div class="step-num">01</div><div class="step-text">Envíe su pregunta al (866) 371-5557</div></div>
+      <div class="step"><div class="step-num">01</div><div class="step-text">Envíe su pregunta al +1 (866) 371-5557</div></div>
       <div class="step"><div class="step-num">02</div><div class="step-text">El equipo de RR.HH. recibe su mensaje</div></div>
       <div class="step"><div class="step-num">03</div><div class="step-text">Le respondemos directamente a su teléfono</div></div>
     </div>
@@ -470,7 +471,7 @@ body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--
       <div class="consent-tag">Divulgación requerida</div>
       <div class="consent-title">Consentimiento y Cancelación</div>
       <div class="consent-body">
-        Al enviar un mensaje de texto al <strong>(866) 371-5557</strong> usted da su consentimiento para recibir respuestas por SMS del equipo de RR.HH. de Payne Group. Esta es una <strong>línea de soporte iniciada únicamente por empleados</strong>. Nunca se envían mensajes de marketing o promocionales.<br><br>
+        Al enviar un mensaje de texto al <strong>+1 (866) 371-5557</strong> usted da su consentimiento para recibir respuestas por SMS del equipo de RR.HH. de Payne Group. Esta es una <strong>línea de soporte iniciada únicamente por empleados</strong>. Nunca se envían mensajes de marketing o promocionales.<br><br>
         La frecuencia de mensajes varía según sus consultas. <strong>Se pueden aplicar tarifas de mensajes y datos.</strong>
       </div>
       <div class="kws">
@@ -502,7 +503,7 @@ function setLang(lang, btn) {
 }
 
 new QRCode(document.getElementById('qrcode'), {
-  text: "https://artasat.github.io/payne-hr/",
+  text: 'sms:+18663715557',
   width: 110, height: 110,
   colorDark: '#1c2d6b',
 
