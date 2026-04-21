@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payne Auto Group — HR Text Line</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root {
+  --red: #e8321a;
+  --navy: #1c2d6b;
+  --blue: #3d5fdf;
+  --blue-dark: #2b4ec8;
+  --white: #ffffff;
+  --light: #f5f6f8;
+  --border: #e2e4ea;
+  --text: #1a1a2e;
+  --text-mid: #4a4e6a;
+  --text-light: #9096b0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); }
+
+/* TOP BAR */
+.topbar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  text-decoration: none;
+}
+.logo-payne {
+  font-size: 28px;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--red);
+  letter-spacing: -.01em;
+  line-height: 1;
+}
+.logo-sub {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--navy);
+  align-self: flex-end;
+  margin-bottom: 3px;
+}
+.lang-toggle { display: flex; gap: 6px; }
+.lang-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  color: var(--text-mid);
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.lang-btn.active {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--white);
+}
+
+/* NAV */
+.nav {
+  background: var(--navy);
+  padding: 0 24px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+.nav-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.nav-sep { color: rgba(255,255,255,0.2); margin: 0 10px; }
+.nav-current {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: rgba(255,255,255,0.9);
+}
+
+/* HERO */
+.hero {
+  background: var(--white);
+  padding: 56px 24px 52px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-blob1, .hero-blob2 { display: none; }
+.hero-content { position: relative; z-index: 1; }
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 16px;
+}
+.hero-title {
+  font-size: clamp(36px, 8vw, 60px);
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1.0;
+  letter-spacing: -.02em;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.hero-title .accent { color: var(--red); }
+.hero-sub {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-mid);
+  max-width: 400px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+/* PHONE */
+.phone-card {
+  display: inline-block;
+  background: var(--light);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 40px;
+  margin-bottom: 28px;
+}
+.phone-label-sm {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 6px;
+}
+.phone-num {
+  font-size: clamp(30px, 7vw, 44px);
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: .02em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.phone-note {
+  font-size: 12px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+.cta-btn {
+  display: inline-block;
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 36px;
+  border-radius: 50px;
+  transition: background .15s, transform .1s;
+}
+.cta-btn:hover { background: #c9270f; transform: translateY(-1px); }
+
+/* QR */
+.qr-wrap {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+#qrcode {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+}
+#qrcode img, #qrcode canvas { display: block; }
+.qr-note {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--text-light);
+  text-transform: uppercase;
+}
+
+/* BODY */
+.page-body { max-width: 720px; margin: 0 auto; padding: 52px 24px; }
+
+/* SECTION */
+.section-hd {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.section-pill {
+  background: var(--navy);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+}
+.section-line { flex: 1; height: 1px; background: var(--border); }
+
+/* TOPICS */
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-bottom: 48px;
+}
+.topic {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-mid);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: border-color .15s, background .15s;
+}
+.topic:hover { border-color: var(--blue); background: #eef1fb; }
+.topic-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+}
+
+/* STEPS */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 48px;
+}
+.step {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 22px 20px;
+}
+.step-num {
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--blue);
+  opacity: .12;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.step-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-mid);
+  line-height: 1.5;
+}
+
+/* CONSENT */
+.consent {
+  background: var(--navy);
+  border-radius: 16px;
+  padding: 36px;
+  margin-bottom: 0;
+}
+.consent-tag {
+  display: inline-block;
+  background: rgba(232,50,26,0.18);
+  color: #ff8a7a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+.consent-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 16px;
+  letter-spacing: -.01em;
+}
+.consent-body {
+  font-size: 14px;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.55);
+}
+.consent-body strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+.kws {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+.kw {
+  font-size: 12px;
+  font-weight: 600;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.55);
+  padding: 7px 16px;
+  border-radius: 20px;
+}
+.kw em { color: #ff8a7a; font-style: normal; font-weight: 700; }
+
+/* FOOTER */
+.footer {
+  background: var(--navy);
+  padding: 24px;
+  text-align: center;
+  margin-top: 0;
+}
+.footer p { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.7; }
+.footer a { color: rgba(255,255,255,0.55); text-decoration: none; }
+.footer a:hover { color: var(--white); }
+
+/* LANG */
+[data-lang] { display: none; }
+[data-lang].vis { display: block; }
+[data-lang-i] { display: none; }
+[data-lang-i].vis { display: inline; }
+[data-lang-ib] { display: none; }
+[data-lang-ib].vis { display: inline-block; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <a class="logo" href="https://payneautogroup.com">
+    <span class="logo-payne">PAYNE</span>
+    <span class="logo-sub">Autogroup</span>
+  </a>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en',this)">English</button>
+    <button class="lang-btn" onclick="setLang('es',this)">Español</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <span class="nav-label">Payne Group</span>
+  <span class="nav-sep">/</span>
+  <span class="nav-current" data-lang-i="en" style="display:inline">Human Resources</span>
+  <span class="nav-current" data-lang-i="es">Recursos Humanos</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-content">
+
+    <div data-lang="en" class="vis">
+      <div class="hero-eyebrow">Payne Group — Human Resources</div>
+      <div class="hero-title">Have an HR<br><span class="accent">Question?</span></div>
+      <div class="hero-sub">Get answers about PTO, payroll, W-2s, and benefits — right from your phone.</div>
+    </div>
+    <div data-lang="es">
+      <div class="hero-eyebrow">Payne Group — Recursos Humanos</div>
+      <div class="hero-title">¿Tiene una<br>pregunta de <span class="accent">RR.HH.?</span></div>
+      <div class="hero-sub">Obtenga respuestas sobre PTO, nómina, W-2 y beneficios — desde su teléfono.</div>
+    </div>
+
+    <div class="phone-card">
+      <div class="phone-label-sm" data-lang-i="en" style="display:inline">HR Text Line</div>
+      <div class="phone-label-sm" data-lang-i="es">Línea de Texto RR.HH.</div>
+      <div class="phone-num">(866) 371-5557</div>
+      <div class="phone-note" data-lang-i="en" style="display:inline">SMS only &nbsp;·&nbsp; Mon – Fri</div>
+      <div class="phone-note" data-lang-i="es">Solo SMS &nbsp;·&nbsp; Lun – Vie</div>
+    </div>
+
+    <br>
+    <a class="cta-btn" href="sms:+18663715557" data-lang-ib="en" style="display:inline-block">Text Us Now</a>
+    <a class="cta-btn" href="sms:+18663715557" data-lang-ib="es">Escríbanos Ahora</a>
+
+    <div class="qr-wrap">
+      <div id="qrcode"></div>
+      <div class="qr-note" data-lang-i="en" style="display:inline">Scan to open this page</div>
+      <div class="qr-note" data-lang-i="es">Escanear para abrir</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="page-body">
+
+  <!-- EN -->
+  <div data-lang="en" class="vis">
+    <div class="section-hd"><div class="section-pill">We can help with</div><div class="section-line"></div></div>
+    <div class="topics-grid">
+      <div class="topic"><div class="topic-dot"></div>PTO balances</div>
+      <div class="topic"><div class="topic-dot"></div>Payroll questions</div>
+      <div class="topic"><div class="topic-dot"></div>W-2 &amp; tax forms</div>
+      <div class="topic"><div class="topic-dot"></div>Benefits information</div>
+      <div class="topic"><div class="topic-dot"></div>Check stubs</div>
+      <div class="topic"><div class="topic-dot"></div>Proliant app help</div>
+    </div>
+
+    <div class="section-hd"><div class="section-pill">How it works</div><div class="section-line"></div></div>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div class="step-text">Text your question to (866) 371-5557</div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-text">HR team receives your message</div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-text">We reply directly to your phone</div></div>
+    </div>
+
+    <div class="consent">
+      <div class="consent-tag">Required disclosure</div>
+      <div class="consent-title">Consent &amp; Opt-Out</div>
+      <div class="consent-body">
+        By texting <strong>(866) 371-5557</strong> you consent to receive SMS replies from the Payne Group HR team. This is an <strong>employee-initiated support line only</strong>. No marketing or promotional messages are ever sent.<br><br>
+        Message frequency varies based on your inquiries. <strong>Message and data rates may apply.</strong>
+      </div>
+      <div class="kws">
+        <div class="kw">Reply <em>STOP</em> to opt out</div>
+        <div class="kw">Reply <em>HELP</em> for assistance</div>
+        <div class="kw">Email: <em>HR@paynegroup.com</em></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ES -->
+  <div data-lang="es">
+    <div class="section-hd"><div class="section-pill">Podemos ayudarle con</div><div class="section-line"></div></div>
+    <div class="topics-grid">
+      <div class="topic"><div class="topic-dot"></div>Saldo de PTO</div>
+      <div class="topic"><div class="topic-dot"></div>Preguntas de nómina</div>
+      <div class="topic"><div class="topic-dot"></div>Formularios W-2</div>
+      <div class="topic"><div class="topic-dot"></div>Información de beneficios</div>
+      <div class="topic"><div class="topic-dot"></div>Talones de pago</div>
+      <div class="topic"><div class="topic-dot"></div>Ayuda con Proliant</div>
+    </div>
+
+    <div class="section-hd"><div class="section-pill">Cómo funciona</div><div class="section-line"></div></div>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div class="step-text">Envíe su pregunta al (866) 371-5557</div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-text">El equipo de RR.HH. recibe su mensaje</div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-text">Le respondemos directamente a su teléfono</div></div>
+    </div>
+
+    <div class="consent">
+      <div class="consent-tag">Divulgación requerida</div>
+      <div class="consent-title">Consentimiento y Cancelación</div>
+      <div class="consent-body">
+        Al enviar un mensaje de texto al <strong>(866) 371-5557</strong> usted da su consentimiento para recibir respuestas por SMS del equipo de RR.HH. de Payne Group. Esta es una <strong>línea de soporte iniciada únicamente por empleados</strong>. Nunca se envían mensajes de marketing o promocionales.<br><br>
+        La frecuencia de mensajes varía según sus consultas. <strong>Se pueden aplicar tarifas de mensajes y datos.</strong>
+      </div>
+      <div class="kws">
+        <div class="kw">Responda <em>STOP</em> para darse de baja</div>
+        <div class="kw">Responda <em>HELP</em> para obtener ayuda</div>
+        <div class="kw">Email: <em>HR@paynegroup.com</em></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>
+    Payne Group Management Co., Inc. &nbsp;·&nbsp;
+    <a href="https://payneautogroup.com">payneautogroup.com</a><br>
+    HR email: <a href="mailto:HR@paynegroup.com">HR@paynegroup.com</a>
+  </p>
+</div>
+
+<script>
+function setLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('[data-lang]').forEach(el => el.classList.toggle('vis', el.dataset.lang === lang));
+  document.querySelectorAll('[data-lang-i]').forEach(el => el.classList.toggle('vis', el.dataset.langI === lang));
+  document.querySelectorAll('[data-lang-ib]').forEach(el => el.classList.toggle('vis', el.dataset.langIb === lang));
+}
+
+new QRCode(document.getElementById('qrcode'), {
+  text: window.location.href,
+  width: 110, height: 110,
+  colorDark: '#1c2d6b',
+
+  colorLight: '#ffffff',
+  correctLevel: QRCode.CorrectLevel.M
+});
+</script>
+</body>
+</html>
